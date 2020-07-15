@@ -1,6 +1,6 @@
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy, ExtractJwt } from 'passport-jwt';
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable, UnauthorizedException, Logger } from '@nestjs/common';
 import { JwtPayload } from './jwt-payload.interface';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserRepository } from './user.repository';
@@ -14,6 +14,7 @@ import { User } from './user.entity';
 // For this reason jwt's should be short lived, rotated, refreshed etc
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
+  private logger = new Logger('JwtStrategy');
   constructor(
     @InjectRepository(UserRepository)
     private userRepository: UserRepository,
@@ -38,6 +39,9 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     // After successful authorization we can populate the request object decorated using AuthGuard
     // with our user entity. (Try removing the line @UseGuards(AuthGuard()) in the 'test' controller )
     // and you will notice that we don't get a log of user entity in console anymore
+    this.logger.debug(
+      `Validated jwt payload for user with username: ${username}`,
+    );
     return user;
   }
 }
