@@ -34,6 +34,9 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     const { username } = payload;
     const user = await this.userRepository.findOne({ username });
     if (!user) {
+      this.logger.debug(
+        `Unauthorized attempt for the payload: ${JSON.stringify(payload)}`,
+      );
       throw new UnauthorizedException();
     }
     // After successful authorization we can populate the request object decorated using AuthGuard
