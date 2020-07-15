@@ -6,7 +6,7 @@ export default () => {
 
   return {
     app: {
-      port: parseInt(process.env.APP_PORT, 10) || 3000,
+      port: parseInt(process.env.PORT, 10) || 3000,
     },
     db: {
       host: connectionOptions.host,

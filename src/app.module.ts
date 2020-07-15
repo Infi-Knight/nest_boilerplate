@@ -15,7 +15,6 @@ const envVariablesValidationSchema = Joi.object({
     .valid('development', 'production', 'test')
     .required(),
   DATABASE_URL: Joi.string().required(),
-  APP_PORT: Joi.number().required(),
   DB_TYPEORM_SYNC: Joi.boolean().required(),
   JWT_EXPIRES_IN: Joi.number().required(),
   JWT_SECRET: Joi.string().required(),
