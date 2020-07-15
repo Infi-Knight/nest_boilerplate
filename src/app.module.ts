@@ -14,17 +14,8 @@ const envVariablesValidationSchema = Joi.object({
   NODE_ENV: Joi.string()
     .valid('development', 'production', 'test')
     .required(),
+  DATABASE_URL: Joi.string().required(),
   APP_PORT: Joi.number().required(),
-  DB_PORT: Joi.number().required(),
-  DB_NAME: Joi.string().required(),
-  DB_HOST: Joi.string().required(),
-  DB_TYPE: Joi.string()
-    .valid('postgres')
-    .required(),
-  DB_USERNAME: Joi.string().required(),
-  DB_PASSWORD: Joi.string()
-    .allow('')
-    .required(),
   DB_TYPEORM_SYNC: Joi.boolean().required(),
   JWT_EXPIRES_IN: Joi.number().required(),
   JWT_SECRET: Joi.string().required(),
@@ -55,7 +46,7 @@ const envVariablesValidationSchema = Joi.object({
         port: configService.get<number>('db.port'),
         username: configService.get('db.username'),
         password: configService.get('db.password'),
-        database: configService.get('db.name'),
+        database: configService.get('db.database'),
         // https://github.com/nrwl/nx/issues/1393#issuecomment-526135967
         entities: getMetadataArgsStorage().tables.map(tbl => tbl.target),
         synchronize: configService.get<boolean>('db.synchronize'),
