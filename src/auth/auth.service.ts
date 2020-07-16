@@ -34,10 +34,16 @@ export class AuthService {
 
     const payload: JwtPayload = { username };
     this.logger.debug(
-      `Generated JWT token with payload: ${JSON.stringify(payload)}`,
+      `Generated JWT payload for user: ${username}, Payload: ${JSON.stringify(
+        payload,
+      )}`,
     );
 
-    const accessToken = this.jwtService.sign(payload);
-    return { accessToken };
+    this.logger.debug(
+      `about to generate an access token for the user: ${username}`,
+    );
+
+    this.logger.debug(`returning the access token for the user: ${username}`);
+    return { accessToken: this.jwtService.sign(payload) };
   }
 }

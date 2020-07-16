@@ -11,13 +11,7 @@ export default () => {
     db: {
       host: connectionOptions.host,
       port: connectionOptions.port,
-      database: connectionOptions.database,
-      username: connectionOptions.user,
-      password: connectionOptions.password,
-      synchronize: process.env.DB_TYPEORM_SYNC || false,
-    },
-    jwt: {
-      expiresIn: process.env.JWT_EXPIRES_IN || 3600,
+      expiresIn: parseInt(process.env.JWT_EXPIRES_IN, 10) || 3600,
       secret: process.env.JWT_SECRET || 'topsecret',
     },
   };
