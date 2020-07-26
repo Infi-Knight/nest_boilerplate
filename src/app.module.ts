@@ -47,7 +47,7 @@ const envVariablesValidationSchema = Joi.object({
         password: configService.get('db.password'),
         database: configService.get('db.database'),
         // https://github.com/nrwl/nx/issues/1393#issuecomment-526135967
-        entities: getMetadataArgsStorage().tables.map(tbl => tbl.target),
+        entities: [__dirname + '/**/*.entity{.ts,.js}'],
         synchronize: configService.get<boolean>('db.synchronize'),
       }),
     }),
