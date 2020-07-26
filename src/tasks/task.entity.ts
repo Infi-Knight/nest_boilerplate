@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
 import { TaskStatus } from './task-status.enum';
-import { User } from 'src/auth/user.entity';
+import { User } from '../auth/user.entity';
 
 // If you want to use the Active record pattern (query methods in the model itself)
 // You need to extend the entity with BaseEntity and then implement static methods in the model (entity)

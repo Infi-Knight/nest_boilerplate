@@ -5,7 +5,7 @@ import {
   Unique,
   OneToMany,
 } from 'typeorm';
-import { Task } from 'src/tasks/task.entity';
+import { Task } from '../tasks/task.entity';
 
 @Entity()
 @Unique(['username']) // we don't want duplicate usernames in our database. Note that this constraint is at db level
